@@ -1,3 +1,5 @@
+package pl.coderslab;
+
 public class MainDao {
 
     public static void create() {
