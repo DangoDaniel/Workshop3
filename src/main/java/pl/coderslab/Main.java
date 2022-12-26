@@ -7,8 +7,8 @@ import java.sql.Statement;
 
 public class Main {
 
-    private static final String CREATE_DATABASE_QUERY = "create database if not exists workshop2;";
-    private static final String CREATE_TABLE_QUERY = "create table if not exists workshop2.users (\n" +
+    private static final String CREATE_DATABASE_QUERY = "create database if not exists workshop3;";
+    private static final String CREATE_TABLE_QUERY = "create table if not exists workshop3.users (\n" +
             "    id int(11) auto_increment,\n" +
             "    email varchar(255) unique not null,\n" +
             "    username varchar(255) not null,\n" +
@@ -17,7 +17,7 @@ public class Main {
             ");";
 
     public static void main(String[] args) {
-        try (Connection connection = DbUtil.getConnection();
+        try (Connection connection = DbUtil.connection();
              Statement statement = connection.createStatement();) {
             statement.execute(CREATE_DATABASE_QUERY);
             statement.execute(CREATE_TABLE_QUERY);
