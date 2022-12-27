@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//Tworzy bazę danych workshop3 (jeśli nie istnieje)
+
 public class Main {
 
     private static final String CREATE_DATABASE_QUERY = "create database if not exists workshop3;";
@@ -17,7 +19,7 @@ public class Main {
             ");";
 
     public static void main(String[] args) {
-        try (Connection connection = DbUtil.connection();
+        try (Connection connection = DbUtil.getConnection();
              Statement statement = connection.createStatement();) {
             statement.execute(CREATE_DATABASE_QUERY);
             statement.execute(CREATE_TABLE_QUERY);
@@ -25,19 +27,5 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        MainDao.create();
-        System.out.println("Read record id: 1");
-        MainDao.read(1);
-        System.out.println("Read record id: 2");
-        MainDao.read(2);
-        System.out.println("\n" + "Update record id: 2");
-        MainDao.update(2);
-        System.out.println("\n" + "Read record id: 2");
-        MainDao.read(2);
-        System.out.println("\n" + "Delete record id: 1");
-        MainDao.delete(1);
-        System.out.println("\n" + "Print all records");
-        MainDao.findAll();
     }
 }

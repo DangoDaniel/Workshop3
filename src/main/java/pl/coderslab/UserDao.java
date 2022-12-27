@@ -26,7 +26,7 @@ public class UserDao {
 
     public User create(User user) {
         String hashPassword = hashPassword(user.getPassword());
-        try (Connection conn = DbUtil.connection()) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preparedStatement=
                     conn.prepareStatement(CREATE_USER_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getUserName());
@@ -55,7 +55,7 @@ public class UserDao {
     public User read(int userId) {
         User user = new User();
 
-        try (Connection conn = DbUtil.connection()) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement getUserByIDStatement =
                     conn.prepareStatement(SELECT_USER_BY_ID_QUERY);
             getUserByIDStatement.setInt(1, userId);
@@ -78,9 +78,9 @@ public class UserDao {
     }
 
     public void update(User user) {
-// "update workshop2.users set email = ?, username = ?, password = ? where id = ?;"
+// "update workshop3.users set email = ?, username = ?, password = ? where id = ?;"
         String hashPassword = hashPassword(user.getPassword());
-        try (Connection conn = DbUtil.connection()) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement updateUserStatement =
                     conn.prepareStatement(UPDATE_USER_QUERY);
             updateUserStatement.setString(1, user.getEmail());
@@ -98,8 +98,8 @@ public class UserDao {
 
     public void delete(int userId) {
 //        private static final String DELETE_USER_BY_ID_QUERY =
-//                "delete from workshop2.users where id = ?;";
-        try (Connection conn = DbUtil.connection()) {
+//                "delete from workshop3.users where id = ?;";
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement deleteUserByIDStatement =
                     conn.prepareStatement(DELETE_USER_BY_ID_QUERY);
             deleteUserByIDStatement.setInt(1, userId);
@@ -112,8 +112,8 @@ public class UserDao {
 
     public User[] findAll(){
 //        private static final String SELLECT_ALL_USER_QUERY =
-//                "select * from workshop2.users;";
-        try (Connection conn = DbUtil.connection()) {
+//                "select * from workshop3.users;";
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement selectAllUsersStatement =
                     conn.prepareStatement(SELLECT_ALL_USER_QUERY);
             selectAllUsersStatement.executeQuery();
