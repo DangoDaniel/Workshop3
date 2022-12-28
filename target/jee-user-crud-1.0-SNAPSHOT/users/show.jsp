@@ -37,18 +37,12 @@
             <td>${user.email}</td>
           </tr>
           <tr>
-
           </tr>
           </tbody>
-
         </table>
 
-
         <button type="submit" name="buttonList" value="showList" class="btn btn-primary">Zamknij</button>
-
       </form>
-
-
       </div>
     </div>
   </div>
